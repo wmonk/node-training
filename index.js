@@ -1,1 +1,3 @@
-console.log('Hello World!');
+var logger = require('./logger');
+
+logger('Hello World!');
