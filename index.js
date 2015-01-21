@@ -1,14 +1,11 @@
 'use strict';
 
-var http = require('http');
-var qs = require('querystring');
-var logger = require('./logger');
+var express = require('express');
 
-http.createServer(function (req, res) {
-    logger(req.url);
+var app = express();
 
-    var toSend = qs.parse(req.url.split('?')[1]);
+app.get('*', function (req, res) {
+    res.send(JSON.stringify(req.query));
+});
 
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.end(JSON.stringify(toSend));
-}).listen(3000);
+app.listen(3000);
