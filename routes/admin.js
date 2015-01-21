@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+var admin = require('../controllers/admin');
 
 function isAuthenticated (req, res, next) {
     if (req.query.auth === 'true') {
@@ -11,8 +12,6 @@ function isAuthenticated (req, res, next) {
     res.redirect('/');
 }
 
-router.get('/admin', isAuthenticated, function (req, res) {
-    res.send('You are an admin!');
-});
+router.get('/admin', isAuthenticated, admin.index);
 
 module.exports = router;
