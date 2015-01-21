@@ -9,7 +9,7 @@ function isAuthenticated (req, res, next) {
         return next();
     }
 
-    res.redirect('/');
+    res.redirect(301, '/');
 }
 
 router.get('/admin', isAuthenticated, admin.index);
