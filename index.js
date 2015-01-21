@@ -8,20 +8,10 @@ app.use(require('./logger')({
     file: true
 }));
 
-function isAuthenticated (req, res, next) {
-    if (req.query.auth === 'true') {
-        return next();
-    }
+var homeRoutes = require('./routes/home');
+var adminRoutes = require('./routes/admin');
 
-    res.redirect('/');
-}
-
-app.get('/', function (req, res) {
-    res.send('You are not logged in!');
-});
-
-app.get('/admin', isAuthenticated, function (req, res) {
-    res.send('You are an admin!');
-});
+app.use('/', homeRoutes);
+app.use('/', adminRoutes);
 
 app.listen(3000);
