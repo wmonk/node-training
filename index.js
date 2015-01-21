@@ -5,7 +5,7 @@ var qs = require('querystring');
 var logger = require('./logger');
 
 http.createServer(function (req, res) {
-    logger('Request made to ' + req.url);
+    logger(req.url);
 
     var toSend = qs.parse(req.url.split('?')[1]);
 
