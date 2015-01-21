@@ -1,14 +1,12 @@
 'use strict';
 
 var express = require('express');
-var logger = require('./logger')({
-    console: true,
-    file: true
-});
-
 var app = express();
 
-app.use(logger);
+app.use(require('./logger')({
+    console: true,
+    file: true
+}));
 
 function isAuthenticated (req, res, next) {
     if (req.query.auth === 'true') {
