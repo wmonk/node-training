@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var chalk = require('chalk');
 
 module.exports = function loggerModule (options) {
     var pathToFile = path.join(__dirname, 'logs', 'web.txt');
@@ -13,7 +14,7 @@ module.exports = function loggerModule (options) {
         logMessage += req.url;
 
         if (options.console) {
-            console.log(logMessage);
+            console.log(chalk.green(Date().toString()), chalk.grey('--'), chalk.red(req.method), chalk.cyan(req.url));
         }
 
         if (options.file) {
